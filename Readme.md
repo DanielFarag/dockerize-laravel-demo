@@ -5,11 +5,11 @@
 - mysql [ +phpyadmin ]
 
 ## curl GET /
-![Alt text](1.png "vue")
-![Alt text](4.png "vue")
+![Alt text](./images/1.png "vue")
+![Alt text](./images/4.png "vue")
 
 ## CURL GET /api/users
-![Alt text](2.png "api")
+![Alt text](./images/2.png "api")
 
 ## phpmyadmin
-![Alt text](3.png "phpmyadmin")
+![Alt text](./images/3.png "phpmyadmin")
