@@ -4,11 +4,11 @@
 - nginx
 - mysql [ +phpyadmin ]
 
-## curl GET /
+## GET /
 ![Alt text](./images/1.png "vue")
 ![Alt text](./images/4.png "vue")
 
-## CURL GET /api/users
+## GET /api/users
 ![Alt text](./images/2.png "api")
 
 ## phpmyadmin
