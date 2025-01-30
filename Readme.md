@@ -1,7 +1,8 @@
-# backend => laravel
-# frontend => vue
-# nginx
-# mysql [ +phpyadmin ]
+# Stack
+- backend => laravel
+- frontend => vue
+- nginx
+- mysql [ +phpyadmin ]
 
 ## curl GET /
 ![Alt text](1.png "vue")
