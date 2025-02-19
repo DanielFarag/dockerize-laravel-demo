@@ -1,31 +1,6 @@
 version: '3.7'
 
 services:
-  fpm:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    restart: always
-    environment:
-      DB_CONNECTION: mysql
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_DATABASE: laravel
-      DB_USERNAME: laravel
-      DB_PASSWORD: laravel
-    depends_on:
-      - mysql
-
-
-
-  vue:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    restart: on-failure
-    working_dir: /app
-    volumes:
-      - ./frontend/dist:/app/dist
 
   mysql:
     image: mysql:latest
@@ -51,6 +26,32 @@ services:
       - mysql        
 
 
+  fpm:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: laravel
+      DB_PASSWORD: laravel
+      APP_DEBUG: true
+      APP_ENV: local
+    depends_on:
+      - mysql
+
+
+  vue:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: on-failure
+    volumes:
+      - frontend-dist:/app
+
   nginx:
     build:
       context: ./nginx
@@ -60,7 +61,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./frontend/dist:/var/www/html/public 
+      - frontend-dist:/var/www/html/public 
     depends_on:
       - fpm
       - vue
@@ -69,3 +70,4 @@ services:
 
 volumes:
   mysql-data:
+  frontend-dist:

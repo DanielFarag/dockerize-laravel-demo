@@ -18,12 +18,12 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # # set writable permision [ storage, cache ]
-RUN chown -R www-data:www-data /var/www/html/storage
-RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage  /var/www/html/bootstrap/cache
 
 # # Install project dependencies using Composer
-RUN rm -rf vendor composer.lock
-RUN composer i --no-interaction --no-cache
+# RUN rm -rf vendor composer.lock
+# RUN composer i --no-interaction --no-cache
+RUN composer i --no-interaction
 RUN composer dumpautoload
 
 # # Expose PHP-FPM port

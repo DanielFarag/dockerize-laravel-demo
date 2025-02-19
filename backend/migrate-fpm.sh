@@ -1,6 +1,10 @@
 #!/bin/sh
 
-while ! php artisan migrate --seed; do
+cp .env.example .env
+
+php artisan key:generate
+
+while ! php artisan migrate --force --seed; do
     echo "Migration failed! Retrying in 5 seconds..."
     sleep 5
 done
