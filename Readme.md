@@ -48,20 +48,20 @@ This will start all services in detached mode.
 - **Networks:** `database`
 
 ### Backend
-- **Build Context:** `./backend`
+- **Image:** `ghcr.io/danielfarag/project2-backend-laravel:latest`
 - **Container Name:** `presentation_backend`
 - **Depends on:** MySQL
 - **Networks:** `backend`
 
 ### Frontend
-- **Build Context:** `./frontend`
+- **Image:** `ghcr.io/danielfarag/project2-frontend-vue:latest`
 - **Container Name:** `presentation_vue`
 - **Depends on:** Backend
 - **Persistent Volume:** `frontend-dist`
 - **Networks:** `frontend`
 
 ### Nginx (Server)
-- **Image:** `nginx`
+- **Image:** `ghcr.io/danielfarag/project2-nginx:latest`
 - **Container Name:** `presentation_nginx`
 - **Port:** `80` (Access via `http://localhost`)
 - **Depends on:** Frontend
