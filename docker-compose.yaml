@@ -4,10 +4,10 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: laravel       
-      MYSQL_ROOT_PASSWORD: laravel
-      MYSQL_USER: laravel                 
-      MYSQL_PASSWORD: laravel     
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}                 
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}     
     volumes:
       - mysql-data:/var/lib/mysql      
 
@@ -16,8 +16,8 @@ services:
     restart: always
     environment:
       PMA_HOST: mysql
-      PMA_USER: laravel 
-      PMA_PASSWORD: laravel
+      PMA_USER: ${MYSQL_ROOT_NAME} 
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "8081:80"    
     depends_on:
@@ -25,35 +25,28 @@ services:
 
 
   fpm:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ghcr.io/danielfarag/project2-backend-laravel:latest
     restart: always
     environment:
       DB_CONNECTION: mysql
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_DATABASE: laravel
-      DB_USERNAME: laravel
-      DB_PASSWORD: laravel
+      DB_DATABASE: ${MYSQL_DATABASE}
+      DB_USERNAME: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
       APP_DEBUG: true
       APP_ENV: local
     depends_on:
       - mysql
 
-
   vue:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: ghcr.io/danielfarag/project2-frontend-vue:latest
     restart: on-failure
     volumes:
       - frontend-dist:/app
 
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
+    image: ghcr.io/danielfarag/project2-nginx:latest
     restart: always
 
     ports:
