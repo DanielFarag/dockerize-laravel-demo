@@ -31,14 +31,3 @@ jobs:
           
             - name: Push Frontend Docker image to GitHub Container Registry
               run: docker push ghcr.io/danielfarag/project2-frontend-vue:latest
-
-
-            - name: Build Server Docker image
-              run: docker build -t ghcr.io/danielfarag/project2-nginx:latest ./nginx
-          
-              
-            - name: Push Server Docker image to GitHub Container Registry
-              run: docker push ghcr.io/danielfarag/project2-nginx:latest
-
-
-

@@ -46,13 +46,14 @@ services:
       - frontend-dist:/app
 
   nginx:
-    image: ghcr.io/danielfarag/project2-nginx:latest
+    image: nginx:alpine
     restart: always
 
     ports:
       - "80:80"
     volumes:
       - frontend-dist:/var/www/html/public 
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - fpm
       - vue
